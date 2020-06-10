@@ -22,6 +22,14 @@ print('You are ' + user_age + ' years old!')
 Используйте форматирование строк.
 """
 
+user_time = int(input('Введите время в секундах: '))
+
+time_hours = user_time // 3600 # вычисляем часы из введённого числа
+time_minuets = (user_time % 3600) // 60 # вычисляем количество минут
+time_seconds = ((user_time % 3600) % 60) % 60 # вычисляем количество секунд
+
+print('Время в формате чч:мм:сс:\n{}:{}:{}'.format(time_hours, time_minuets, time_seconds))
+
 
 """3. Узнайте у пользователя число n. 
 Найдите сумму чисел n + nn + nnn. 
@@ -29,10 +37,25 @@ print('You are ' + user_age + ' years old!')
 Считаем 3 + 33 + 333 = 369.
 """
 
+user_number = input('Введите число: ')
+result = int(user_number) + int((user_number * 2)) + int((user_number * 3)) # создаем переменную, куда записываем результат соответствующего сложения
+
+print(result)
+
 """4. Пользователь вводит целое положительное число. 
 Найдите самую большую цифру в числе. 
 Для решения используйте цикл while и арифметические операции.
+7854
 """
+
+user_number = int(input('Введите целое положительное число: '))
+max_number = user_number % 10
+
+while user_number > 0:
+    if user_number % 10 > max_number:
+        max_number = user_number % 10
+    user_number = user_number // 10
+print(max_number)
 
 
 """5. Запросите у пользователя значения выручки и издержек фирмы. 
@@ -43,6 +66,19 @@ print('You are ' + user_age + ' years old!')
 Далее запросите численность сотрудников фирмы и определите прибыль фирмы в расчете 
 на одного сотрудника.
 """
+
+company_money = int(input('Введите сумму выручки: '))
+company_loss = int(input('Введите сумму убытка: '))
+benefit = company_money - company_loss
+
+if company_money > company_loss:
+    print('Ваша фирма прибыльна!')
+    profit = benefit / company_money
+    print('Рентабельность вашего бизнеса', profit)
+    company_persons = int(input('Введите количество сотрудников: '))
+    print('Прибыль фирмы на 1 сотрудника составляет', (benefit // company_persons), 'рублей.')
+else:
+    print('Ваша фирма прибыль не получила')
 
 
 """6. Спортсмен занимается ежедневными пробежками. 
@@ -60,3 +96,17 @@ print('You are ' + user_age + ' years old!')
 6-й день: 3,22
 Ответ: на 6-й день спортсмен достиг результата — не менее 3 км.
 """
+
+a = int(input('Введите результат 1-го дня: ')) # переменные оставил как в условии
+b = int(input('Введите желаемый результат: '))
+day_number = 1
+
+while a < b:
+    a = a + ((a * 10) / 100)
+    day_number += 1
+
+finish_day = 'На {} день спортсмен достигнет результата - не менее {} км'.format(day_number, b)
+print(finish_day)
+
+
+
