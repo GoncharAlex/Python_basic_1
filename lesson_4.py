@@ -10,8 +10,11 @@ from sys import argv
 
 hours, pay_for_hour, bonus = argv
 
-print((hours * pay_for_hour) + bonus)
-
+try:
+    result = int(hours) * int(pay_for_hour) + int(bonus)
+    print(result)
+except ValueError:
+    print('Ошибка введённых данных!')
 
 
 '''
