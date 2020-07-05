@@ -100,3 +100,82 @@ print(worker_alex.get_total_income())
 print(worker_bob.name)
 print(worker_alex.surname)
 
+
+'''
+4. Реализуйте базовый класс Car. У данного класса должны быть следующие 
+атрибуты: speed, color, name, is_police (булево). А также методы: 
+go, stop, turn(direction), которые должны сообщать, что машина поехала, 
+остановилась, повернула (куда). Опишите несколько дочерних классов: 
+TownCar, SportCar, WorkCar, PoliceCar. Добавьте в базовый класс метод 
+show_speed, который должен показывать текущую скорость автомобиля. 
+Для классов TownCar и WorkCar переопределите метод show_speed. 
+При значении скорости свыше 60 (TownCar) и 40 (WorkCar) должно выводиться 
+сообщение о превышении скорости.
+Создайте экземпляры классов, передайте значения атрибутов. 
+Выполните доступ к атрибутам, выведите результат. Выполните вызов 
+методов и также покажите результат.
+'''
+
+import random
+
+class Car:
+
+    def __init__(self, speed, color, name, is_police=None):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.is_police = is_police
+
+    def go(self):
+        print('Car is going!')
+
+    def stop(self):
+        print('Car is stoped!')
+
+    def turn(self):
+        direction = ['right', 'left']
+        print(random.choice(direction))
+
+    def show_speed(self):
+        print(self.speed)
+
+class TownCar(Car):
+
+    def show_speed(self):
+        print(self.speed)
+        if self.speed > 60:
+            print('Превышение скорости!')
+
+class SportCar(Car):
+    pass
+
+class WorkCar(Car):
+
+    def show_speed(self):
+        print(self.speed)
+        if self.speed > 40:
+            print('Превышение скорости!')
+
+class PoliceCar(Car):
+    pass
+
+
+first_car = Car(50, 'green', 'audi')
+print(first_car.name, first_car.color)
+first_car.go()
+first_car.show_speed()
+first_car.stop()
+
+
+second_car = TownCar(70, 'yellow', 'mercedes')
+print(first_car.name, first_car.color)
+second_car.go()
+second_car.show_speed()
+second_car.stop()
+
+third_car = PoliceCar(100, 'black', 'ford', True)
+print(third_car.name, third_car.color, third_car.is_police)
+third_car.go()
+third_car.show_speed()
+third_car.stop()
+
