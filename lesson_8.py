@@ -9,16 +9,40 @@
 
 class Date:
 
-    def __init__(self, date):
+    def __init__(self, date: str):
         self.date = date
 
     @classmethod
-    def first_method(self):
-        pass
+    def first_method(cls, param: str):
+
+        result = []
+        for itm in param.split('-'):
+            if itm.isdigit():
+                itm = int(itm)
+                result.append(itm)
+        return result
+
 
     @staticmethod
-    def second_method(self):
-        pass
+    def second_method(param_str: str):
+
+        idx = 0
+        result = []
+        for itm in param_str.split('-'):
+            if itm.isdigit():
+                itm = int(itm)
+                result.insert(idx, itm)
+                idx += 1
+            try:
+                if 0 < result[1] < 13:
+                    return print('Валидация прошла успешно!')
+            except Exception:
+                continue
+
+date = Date('22-10-1989')
+# date = date.first_method('22-10-1989')
+print(date.second_method('22-10-1989'))
+print(1)
 
 
 '''
@@ -27,4 +51,17 @@ class Date:
 нуля в качестве делителя программа должна корректно обработать эту ситуацию и 
 не завершиться с ошибкой.
 '''
+
+class MyException(Exception):
+    def __init__(self, txt):
+        self.txt = txt
+
+
+try:
+    first_number = int(input('Введите первое число: '))
+    second_number = int(input('Введите второе число: '))
+    if second_number == 0:
+        raise MyException('На ноль делить нельзя!')
+except MyException as e:
+    print(e)
 
